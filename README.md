@@ -26,7 +26,7 @@
 
 1）下载发布版本
 
-版本：xxx
+最新版本：[v1.0.0](https://github.com/yaorongke/yapi-generator/releases/tag/v1.0.0)
 
 将`yaorongke-yapi-generator-1.0.0.zip`解压到一个文件夹里，包含一个`jar`和一个配置文件
 
@@ -43,7 +43,7 @@ mvn clean package -Dmaven.test.skip=true
 
 ##### 2.配置
 
-修改`application.properties`，所有配置如下所示，前4项为`yapi`服务相关配置，请按实际情况填写；后4项为要生成的类文件的个性化配置，选填。
+修改`application.properties`，所有配置如下所示，前4项为`yapi`服务相关配置，请按实际情况填写；后4项为要生成的类文件的个性化配置，选填。`yapi.api.interface.ids`和`yapi.api.cat.id`只配置一个即可，两个都配置时会把包含的接口`id`合并。
 
 ```properties
 # yapi服务地址
@@ -53,7 +53,7 @@ yapi.project.token=bb70d7d0d1511baa7873fb515398a7b935add6e3575s5d79e8c62805afb3b
 # 需要生成Java代码的接口id，多个接口id时逗号隔开
 yapi.api.interface.ids=11
 # 需要生成Java代码的分类id，只支持单个分类id，配置该项会获取分类下的所有接口id
-yapi.api.cat.id=18
+yapi.api.cat.id=
 
 # 类文件的包路径
 yapi.generator.base.package=com.rkyao.yapi.generator
@@ -83,6 +83,6 @@ java -jar yaorongke-yapi-generator.jar
 
 #### 三、版本说明
 
-##### 1.0.0版本
+##### v1.0.0
 
 目前`1.0.0`版本中，参数格式支持最常使用的`Query`和`Body`里的`json`格式，`form`、`file`、`raw`格式使用较少暂不支持，未来有时间会考虑兼容。
