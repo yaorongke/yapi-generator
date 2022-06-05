@@ -26,7 +26,7 @@
 
 1）下载发布版本
 
-版本：xxx
+最新版本：[v1.0.0](https://github.com/yaorongke/yapi-generator/releases/tag/v1.0.0)
 
 将`yaorongke-yapi-generator-1.0.0.zip`解压到一个文件夹里，包含一个`jar`和一个配置文件
 
@@ -83,6 +83,6 @@ java -jar yaorongke-yapi-generator.jar
 
 #### 三、版本说明
 
-##### 1.0.0版本
+##### v1.0.0
 
 目前`1.0.0`版本中，参数格式支持最常使用的`Query`和`Body`里的`json`格式，`form`、`file`、`raw`格式使用较少暂不支持，未来有时间会考虑兼容。
