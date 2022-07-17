@@ -38,7 +38,7 @@ public class ${serviceName}Controller {
      * @return ${api.responseType?uncap_first}
     </#if>
      */
-    @RequestMapping(value = "/", method = RequestMethod.${api.httpMethod})
+    @RequestMapping(value = "${api.path}", method = RequestMethod.${api.httpMethod})
     public ${api.responseType} ${api.methodName}(<#list api.paramList as param><#if param.annotation??>${param.annotation} </#if>${param.type} ${param.name}<#if param_has_next>, </#if></#list>) {
     <#if api.responseType != "void">
         return ${serviceName?uncap_first}Service.${api.methodName}(<#list api.paramList as param>${param.name}<#if param_has_next>, </#if></#list>);

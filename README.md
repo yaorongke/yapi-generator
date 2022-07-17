@@ -26,7 +26,7 @@
 
 1）下载发布版本
 
-最新版本：[v1.0.0](https://github.com/yaorongke/yapi-generator/releases/tag/v1.0.0)
+最新版本：xxx
 
 将`yaorongke-yapi-generator-1.0.0.zip`解压到一个文件夹里，包含一个`jar`和一个配置文件
 
@@ -36,7 +36,7 @@
 
 ```shell
 # clone本项目源码
-git clone https://github.com/yaorongke/yapi-generator.git
+git clone xxx
 # 编译打包，jar包输出到target目录下
 mvn clean package -Dmaven.test.skip=true
 ```
@@ -53,7 +53,7 @@ yapi.project.token=bb70d7d0d1511baa7873fb515398a7b935add6e3575s5d79e8c62805afb3b
 # 需要生成Java代码的接口id，多个接口id时逗号隔开
 yapi.api.interface.ids=11
 # 需要生成Java代码的分类id，只支持单个分类id，配置该项会获取分类下的所有接口id
-yapi.api.cat.id=
+yapi.api.cat.id=18
 
 # 类文件的包路径
 yapi.generator.base.package=com.rkyao.yapi.generator
@@ -83,6 +83,10 @@ java -jar yaorongke-yapi-generator.jar
 
 #### 三、版本说明
 
-##### v1.0.0
+##### 1.0.0版本
 
 目前`1.0.0`版本中，参数格式支持最常使用的`Query`和`Body`里的`json`格式，`form`、`file`、`raw`格式使用较少暂不支持，未来有时间会考虑兼容。
+
+##### 1.0.1版本
+
+修复了一些bug

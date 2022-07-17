@@ -109,7 +109,7 @@ public class ClassInfoTransformServiceImpl implements ClassInfoTransformService 
             ApiInfo apiInfo = new ApiInfo();
             apiInfo.setHttpMethod(dataDTO.getMethod());
             apiInfo.setPath(dataDTO.getPath());
-            apiInfo.setDesc(StringUtils.isEmpty(dataDTO.getMarkdown()) ? "这是注释" : dataDTO.getMarkdown());
+            apiInfo.setDesc(StringUtils.isEmpty(dataDTO.getTitle()) ? "这是注释" : dataDTO.getTitle());
             apiInfo.setMethodName(methodName);
             apiInfo.setParamList(analysisParamList(interfaceInfoDTO.getData(), reqEntityInfoList));
             apiInfo.setResponseType(analysisResponseType(respPropertiesDTO, respEntityInfoList));
@@ -125,8 +125,32 @@ public class ClassInfoTransformServiceImpl implements ClassInfoTransformService 
         if (CollectionUtils.isEmpty(entityInfoList)) {
             return;
         }
+        // key: 实体类旧名称 val: 实体类新名称
+        Map<String, String> classNameMap = new HashMap<>();
+        // 实体类名前加上接口名防止重复
         for (EntityInfo entityInfo : entityInfoList) {
-            entityInfo.setClassName(StringUtil.capitalizeFirstLetter(methodName) + entityInfo.getClassName());
+            String oldName = entityInfo.getClassName();
+            String newName = StringUtil.capitalizeFirstLetter(methodName) + entityInfo.getClassName();
+            classNameMap.put(oldName, newName);
+
+            entityInfo.setClassName(newName);
+        }
+        // 实体类中的字段有包含实体类的，也加上接口名
+        for (EntityInfo entityInfo : entityInfoList) {
+            List<FieldInfo> fieldInfoList = entityInfo.getFieldList();
+            if (CollectionUtils.isEmpty(fieldInfoList)) {
+                continue;
+            }
+            for (FieldInfo fieldInfo : fieldInfoList) {
+                String type = fieldInfo.getType();
+                for (Map.Entry<String, String> entry : classNameMap.entrySet()) {
+                    String oldName = entry.getKey();
+                    String newName = entry.getValue();
+                    if (type.contains(oldName)) {
+                        fieldInfo.setType(type.replace(oldName, newName));
+                    }
+                }
+            }
         }
     }
 
